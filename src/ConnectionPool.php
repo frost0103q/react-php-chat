@@ -59,6 +59,7 @@ class ConnectionPool
         $connection->on('data', function ($data) use ($connection) {
             $connectionData = $this->getConnectionData($connection);
 
+            // 新しいコネクションの場合はプールする
             if (empty($connectionData)) {
                 $this->addNewMember($data, $connection);
                 return;
@@ -104,6 +105,7 @@ class ConnectionPool
                 continue;
             }
 
+            /** @var ConnectionInterface $conn */
             $connection_data = $this->getConnectionData($conn);
             if (empty($connection_data['name'])) {
                 continue;

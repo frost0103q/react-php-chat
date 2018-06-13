@@ -14,6 +14,7 @@ $socket = new Server(gethostbyname($host) . ':8080', $loop);
 $pool = new ConnectionPool();
 
 $socket->on('connection', function (ConnectionInterface $connection) use ($pool) {
+    // クライアントと接続が確立されたらPoolする
     $pool->add($connection);
 });
 
