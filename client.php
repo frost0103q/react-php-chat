@@ -13,7 +13,7 @@ $connector = new Connector($loop);
 $stdin = new ReadableResourceStream(STDIN, $loop);
 $stdout = new WritableResourceStream(STDOUT, $loop);
 
-$ip = $argv[1] ?? '127.0.0.1';
+$ip = $argv[1] ? gethostbyname($argv[1]) : '127.0.0.1';
 $port = $argv[2] ?? '8888';
 $connector
     ->connect("$ip:$port")
